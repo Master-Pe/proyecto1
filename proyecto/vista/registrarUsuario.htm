@@ -7,20 +7,37 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="../controlador/controladorUsuario.php" method="POST">
-    <label>Login</label>
-        <input type="text" name="login" id="login" />
-        <br>
-        <label>pass</label>
-        <input type="text" name="pass" id="pass" />
-        <br>
-        <label>nick</label>
-        <input type="text" name="nick" id="nick" />
-        <br>
-        <label>email</label>
-        <input type="text" name="email" id="email" />
-        <br>
-        <button type="submit" name="crear">LOGIN</button>
-    </form>
+
+    <table align="center" border="1">
+        <thead>
+            <tr>
+                <th>Login</th>
+                <th>Pass</th>
+                <th>Nick</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <form action="../controlador/controladorUsuario.php" method="POST">
+                <tr>
+                    <th>
+                        <input type="text" name="login" id="login" />
+                    </th>
+                    <th>
+                        <input type="text" name="pass" id="pass" />
+                    </th>
+                    <th>
+                        <input type="text" name="nick" id="nick" />
+                    </th>
+                    <th>
+                        <input type="text" name="email" id="email" />
+                    </th>
+                    <th>
+                        <button type="submit" name="crear">LOGIN</button>
+                    </th>
+                </tr>
+                </form>
+        </tbody>
+    </table>
 </body>
 </html>

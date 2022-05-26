@@ -22,6 +22,7 @@ require_once('../controlador/controladorUsuario.php');
                 <th>pass</th>
                 <th>nick</th>
                 <th>email</th>
+                <th><a href="registrarUsuario.htm">Registrar</a></th>
             </tr>
         </thead>
         <tbody>
@@ -39,17 +40,24 @@ require_once('../controlador/controladorUsuario.php');
                     <form id='frmUsuario$usuario[id_usuario]' method='POST' action='../controlador/controladorUsuario.php'>
                         <input type='hidden' name='id_usuario' value=".$usuario['id_usuario']." />
                         <button type='submit' name='editar'>Editar</button>
-                        
+                        <button type='button' onclick='validarEliminar($usuario[id_usuario])' name='eliminar'>Eliminar</button> 
+                        <input type='hidden' name='eliminar' />
                         </form>
                     </td>";
                     echo "</tr>";
-                }
-
-                  
-
-                
+                }             
             ?>
         </tbody>
     </table>
+
+    <script>
+        function validarEliminar(id_usuario){
+            if(confirm('frmUsuario'+ id_usuario + '¿Realmente desea eliminar?')){
+                //document.frmCategoria.submit();
+                document.getElementById('frmUsuario'+ id_usuario ).submit();
+            }
+        }
+    </script>
+
 </body>
 </html>

@@ -55,10 +55,10 @@ class controladorUsuario{
      public function eliminarUsuario($e_idUsuario){
         $usuario = new Usuario();
         $usuario->setIdUsuario($e_idUsuario);
-        $usuario->setLoginUsuario('');
+        //$usuario->setLoginUsuario('');   //????????????????
 
         $crudUsuario = new crudUsuario();
-        $crudUsuario->eliminarUsuario($e_idUsuario);
+        $crudUsuario->eliminarUsuario($usuario);
      }
 
 }
@@ -73,7 +73,7 @@ if(isset($_POST['crear'])){
 
 }
 
-elseif(isset($_POST['modificar'])){
+else if(isset($_POST['modificar'])){
 
     $e_idUsuario = $_POST['idUsuario'];
     $e_loginUsuario = $_POST['loginUsuario'];
@@ -87,10 +87,15 @@ elseif(isset($_POST['modificar'])){
 
 }   
 
-elseif(isset($_POST['editar'])){
+else if(isset($_POST['editar'])){
 
     $e_id=$_POST['id_usuario'];
     header("Location:../vista/modificarUsuario.php?id_usuario=$e_id");
 } 
 
+else if(isset($_POST['eliminar'])){
+    $e_id = $_POST['id_usuario'];
+    $controladorUsuario->eliminarUsuario($e_id);
+    header("Location:../vista/leerUsuario.php");
+}
 ?>

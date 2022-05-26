@@ -21,7 +21,7 @@ class crudUsuario{
 
         try{
             $sql->execute();
-            $mensaje = "registro exitoso";    
+            header("Location:../vista/leerUsuario.php");   
         }
 
         catch(Exception $excepcion){
