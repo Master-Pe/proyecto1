@@ -50,23 +50,44 @@ class crudUsuario{
 
     public function modificarUsuario($usuario){
         $baseDatos = Conexion::conectar();
-        $sql = $baseDatos->prepare('UPDATE usuario SET login_usuario =:e_login, pass_usuario = e_contraseña, nick_usuario = e_nick, email_usuario = e_email WHERE id_usuario = :e_id ');
+        $sql = $baseDatos->prepare('UPDATE usuario SET login_usuario=:e_login,pass_usuario=:e_contrasena,nick_usuario=:e_nick,email_usuario=:e_email WHERE id_usuario=:e_id');
 
-
+        $sql->bindValue('e_id',$usuario->getIdUsuario());
         $sql->bindValue('e_login',$usuario->getLoginUsuario());
-        $sql->bindValue('e_contraseña',$usuario->getPassUsuario());
+        $sql->bindValue('e_contrasena',$usuario->getPassUsuario());
         $sql->bindValue('e_nick',$usuario->getNickUsuario());
         $sql->bindValue('e_email',$usuario->getEmailUsuario());
     
         try{
             $sql->execute();
-            echo "actualozacion exitosa";
+            echo "actualizacion exitosa";
+            header("Location:../vista/leerUsuario.php");
         }
         catch(Exception $excepcion){
             echo $excepcion->getMessage();
-            echo "Problemas en la conexion";
+            echo "Problemas en la modificacion";
         }
         Conexion::desconectar($baseDatos);
+    }
+
+    public function eliminarUsuario($usuario){
+        $baseDato = Conexion::conectar();
+
+        $sql = $baseDato->prepare('DELETE FROM  
+        usuario WHERE id_usuario=:e_id');
+        $sql->bindValue('e_id',$usuario->getIdUsuario());
+
+        try{
+            $sql->execute();
+            echo"eliminacion exitosa";
+            header("Location:../vista/leerUsuario.php");
+
+        }
+        catch(Excepcion $excepcion){
+            echo "problemas en la eliminacion";
+        }
+
+        Conexion::desconectar($baseDato);
     }
 }
 ?>

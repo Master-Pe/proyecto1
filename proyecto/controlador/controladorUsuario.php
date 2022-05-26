@@ -26,10 +26,14 @@ class controladorUsuario{
         return $leerUsuario;
     }
 
-    public function modificarUsuario($e_id,$e_login){
+    public function modificarUsuario($e_id,$e_login,$e_pass,$e_nick,$e_email){
         $usuario = new Usuario();
         $usuario->setIdUsuario($e_id);
         $usuario->setLoginUsuario($e_login);
+        $usuario->setPassUsuario($e_pass);
+        $usuario->setNickUsuario($e_nick);
+        $usuario->setEmailUsuario($e_email);
+
 
         $crudUsuario = new crudUsuario();
         $crudUsuario->modificarUsuario($usuario);
@@ -48,6 +52,15 @@ class controladorUsuario{
         return $usuario;
      }
 
+     public function eliminarUsuario($e_idUsuario){
+        $usuario = new Usuario();
+        $usuario->setIdUsuario($e_idUsuario);
+        $usuario->setLoginUsuario('');
+
+        $crudUsuario = new crudUsuario();
+        $crudUsuario->eliminarUsuario($e_idUsuario);
+     }
+
 }
 $controladorUsuario = new controladorUsuario();
 if(isset($_POST['crear'])){
@@ -64,8 +77,13 @@ elseif(isset($_POST['modificar'])){
 
     $e_idUsuario = $_POST['idUsuario'];
     $e_loginUsuario = $_POST['loginUsuario'];
+    $e_pass = $_POST['pass'];
+    $e_nick = $_POST['nick'];
+    $e_email = $_POST['email'];
+    
 
-    $controladorUsuario->modificarUsuario($e_idUsuario,$e_loginUsuario);
+
+    $controladorUsuario->modificarUsuario($e_idUsuario,$e_loginUsuario,$e_pass,$e_nick,$e_email);
 
 }   
 

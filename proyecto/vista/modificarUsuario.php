@@ -14,7 +14,7 @@ $usuario = $controladorUsuario->buscarUsuario($_REQUEST['id_usuario']);
     <title>Document</title>
 </head>
 <body>
-    <table>
+    <table align="center" border="1">
         <thead>
             <tr>
                 <th>Id</th>
@@ -33,8 +33,21 @@ $usuario = $controladorUsuario->buscarUsuario($_REQUEST['id_usuario']);
                     <th>
                         <input type="text" name="loginUsuario" value = "<?php echo $usuario->getLoginUsuario(); ?>" />
                     </th>
+
                     <th>
-                    <button type="submit" name="Modificar">Modificar</button>
+                        <input type="text" name="pass" value = "<?php echo $usuario->getPassUsuario(); ?>" />
+                    </th>
+
+                    <th>
+                        <input type="text" name="nick" value = "<?php echo $usuario->getNickUsuario(); ?>" />
+                    </th>
+
+                    <th>
+                        <input type="text" name="email" value = "<?php echo $usuario->getEmailUsuario(); ?>" />
+                    </th>
+
+                    <th>
+                    <button type="submit" name="modificar">Modificar</button>
                     </th>
                 </tr>
             </form>
